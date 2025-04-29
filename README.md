@@ -1,12 +1,12 @@
 # Overview
 
-This tutorial describes a way to make a Linux virtual machine (VM) configured for developing applications built upon Zephyr RTOS.
+This tutorial describes a way to make a Linux virtual machine (VM) configured for developing applications built upon [Zephyr RTOS](https://www.zephyrproject.org/).
 
 The target board I use is the [Silicon Labs EFR32xG24 Dev Kit](https://www.silabs.com/development-tools/wireless/efr32xg24-dev-kit?tab=overview), based on the [EFR32MG24 wireless System on Chip (SoC)](https://www.silabs.com/wireless/zigbee/efr32mg24-series-2-socs). It could be replaced by any [board supported by Zephyr](https://docs.zephyrproject.org/latest/boards/index.html#).
 
 Software versions will be:
 
-* Linux Mint Cinnamon 22.1 (based on Ubuntu 24.04 Noble)
+* [Linux Mint](https://linuxmint.com/) Cinnamon 22.1 (based on Ubuntu 24.04 Noble)
 * Zephyr 4.1.99
 * Zephyr SDK 0.17.0
 
