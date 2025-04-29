@@ -49,7 +49,7 @@ Then, [install some Python dependencies and get Zephyr](https://docs.zephyrproje
 
 [Build the *blinky* sample](https://docs.zephyrproject.org/latest/develop/getting_started/index.html#build-the-blinky-sample).
 
-Connect the EFR32xG24 Dev Kit (xG24-DK2601B). Check that the virtual machine can see it, with **Devices > USB**. A new USB device should be visible: **Silicon Labs J-Link OB**. Tick the associated checkbox.
+Connect the EFR32xG24 Dev Kit. Check that the virtual machine can see it, with **Devices > USB**. A new USB device should be visible: **Silicon Labs J-Link OB**. Tick the associated checkbox.
 
 You can assign the board to the virtual machine on a permanent basis with **Devices > USB > USB Settings...**
 
@@ -62,3 +62,24 @@ $ west flash
 ```
 
 The red LED should blink.
+
+Open a new terminal window, and run Miniterm:
+
+```
+$ pyserial-miniterm /dev/ttyACM0 115200
+```
+
+Miniterm should display log messages:
+
+```
+...
+LED state: OFF
+LED state: ON
+LED state: OFF
+LED state: ON
+...
+```
+
+> [!NOTE]
+>
+> To exit from Miniterm, use the following key combination: CTRL + ] (CTRL + ALT-GR + ) on an AZERTY keyboard).
