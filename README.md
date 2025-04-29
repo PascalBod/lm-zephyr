@@ -43,6 +43,7 @@ Then, [install some Python dependencies and get Zephyr](https://docs.zephyrproje
 > FATAL ERROR: command "/home/developer/zephyr-sdk-0.17.0/setup.sh -t all -h" failed
 > ```
 >
+> The reason was probably a temporary network problem. 
 > I had to re-run `/home/developer/zephyr-sdk-0.17.0/setup.sh -t all -h` and then to install the udev rules, as
 > documented in part 4 of [this section](https://docs.zephyrproject.org/latest/develop/toolchains/zephyr_sdk.html#zephyr-sdk-installation).
 
