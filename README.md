@@ -51,7 +51,7 @@ Then, [install some Python dependencies and get Zephyr](https://docs.zephyrproje
 [Build the *blinky* sample](https://docs.zephyrproject.org/latest/develop/getting_started/index.html#build-the-blinky-sample). The board name is `xg24_dk2601b`. It can be found with the `west boards` command:
 
 ```
-west boards -n xg24
+$ west boards -n xg24
 ```
 
 Connect the EFR32xG24 Dev Kit. Check that the virtual machine can see it, with **Devices > USB**. A new USB device should be visible: **Silicon Labs J-Link OB**. Tick the associated checkbox.
@@ -69,7 +69,7 @@ Install [J-Link Software and Documentation pack](https://www.segger.com/download
 Flash the board:
 
 ```
-west flash
+$ west flash
 ```
 
 The red LED should blink.
