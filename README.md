@@ -14,6 +14,11 @@ Software versions will be:
 
 * A Linux Mint Cinnamon 22.1 VM. Create it according to [these instructions](https://github.com/PascalBod/lm-vm)
 * The EFR32xG24 Dev Kit mentionned above
+* Software development comptencies:
+  * Basic knowledge of git - [git user manual](https://git-scm.com/docs/user-manual)
+  * Basic knowledge of GitHub - [About GitHub and Git](https://docs.github.com/en/get-started/start-your-journey/about-github-and-git)
+  * Basic knowledge of Linux (knowing the most common commands...) - [An Introduction to Linux Basics](https://www.digitalocean.com/community/tutorials/an-introduction-to-linux-basics), from DigitalOcean
+  * Basic knowledge of VirtualBox (knowing how to create a virtual machine...) - [VirtualBox end-user documentation](https://www.virtualbox.org/wiki/End-user_documentation)
 
 # References
 
