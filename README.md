@@ -122,7 +122,6 @@ Clone the repository. Then, adhere to the following steps (slightly different fr
 3. Edit the workspace file in the following way:
 
 * Update the Zephyr SDK path in `C_Cpp.default.compilerPath` value: `${userHome}/zephyr-sdk-0.17.0/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc`
-* After `C_Cpp.default.compileCommands` definition, add the definition of `C_Cpp.default.includePath`: `"C_Cpp.default.includePath": ["${userHome}/zephyrproject/zephyr/include"],`
 * Modify the board name for the *West Build* task, setting it to `xg24_dk2601b`
 * Modify the default board name in the `inputs` array, setting it to `xg24_dk2601b`
 * Modify the device of the *Launch* configuration, setting it to `EFR32MG24BxxxF1536`
