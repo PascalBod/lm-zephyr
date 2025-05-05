@@ -24,10 +24,13 @@ Software versions will be:
 
 * [Zephyr's Getting Started Guide](https://docs.zephyrproject.org/latest/develop/getting_started/index.html)
 * Zephyr - Supported boards - [EFR32xG24 Dev Kit (xG24-DK2601B)](https://docs.zephyrproject.org/latest/boards/silabs/dev_kits/xg24_dk2601b/doc/index.html)
+* [How to Configure VS Code for Zephyr Development](https://blog.golioth.io/how-to-configure-vs-code-for-zephyr-development/) - Jonathan Beri
 
 # VM configuration
 
 Once the Linux Mint Cinnamon 22.1 VM is ready, configure it according to the instructions below.
+
+## Zephyr development environment
 
 With the Software Manager, install:
 
@@ -99,3 +102,37 @@ LED state: ON
 > [!NOTE]
 >
 > To exit from Miniterm, use the following key combination: CTRL + ] (CTRL + ALT-GR + ) on an AZERTY keyboard).
+
+## Integrated Development Environment (IDE)
+
+### VS Code installation
+
+The IDE we will use is [Visual Studio Code](https://code.visualstudio.com/) (VS Code), from Microsoft.
+
+Download the [Ubuntu package](https://code.visualstudio.com/Download) and install it.
+
+### VS Code configuration
+
+We will use the configuration produced by Jonathan Beri, and made available in [this GitHub repository](https://github.com/beriberikix/zephyr-vscode-example). The configuration will be done for the *thread* sample project.
+
+Clone the repository. Then, adhere to the following steps (slightly different from the ones presented by the repository):
+
+1. Turn on Compilation Database with  `west config build.cmake-args -- -DCMAKE_EXPORT_COMPILE_COMMANDS=ON`
+2. Copy the `zephyr-linux.code-workspace` file to `~/zephyrproject/zephyr/samples/basic/thread`
+3. Edit the workspace file in the following way:
+
+* Update the Zephyr SDK path in `C_Cpp.default.compilerPath` value: `${userHome}/zephyr-sdk-0.17.0/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc`
+* After `C_Cpp.default.compileCommands` definition, add the definition of `C_Cpp.default.includePath`: `"C_Cpp.default.includePath": ["${userHome}/zephyrproject/zephyr/include"],`
+* Modify the board name for the *West Build* task, setting it to `xg24_dk2601b`
+* Modify the default board name in the `inputs` array, setting it to `xg24_dk2601b`
+* Modify the device of the *Launch* configuration, setting it to `EFR32MG24BxxxF1536`
+* Update the Zephyr SDK path in `gdbPath` of the *Launch* configuration
+* Perform the above two steps for the *Attach* configuration
+
+Now, start VS Code and open the above workspace file (**File > Open Workspace from File...**).
+
+Build the sample application, for instance with **Terminal > Run Task...**, then selecting **West Build**.
+
+Ensure the board is connected to a PC's USB port, and attached to the VM. Flash the board, for instance with **Terminal > Run Task...**, then selecting **West Flash**.
+
+To run the sample application in debug mode, select **Run > Start Debugging**.
