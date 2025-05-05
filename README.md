@@ -129,7 +129,15 @@ Clone the repository. Then, adhere to the following steps (slightly different fr
 * Update the Zephyr SDK path in `gdbPath` of the *Launch* configuration
 * Perform the above two steps for the *Attach* configuration
 
+> [!NOTE]
+> The device name can be found from the [list of supported devices provided by Segger](https://www.segger.com/supported-devices/search/).
+
 Now, start VS Code and open the above workspace file (**File > Open Workspace from File...**).
+
+After a few seconds, VS Code proposes to install the extensions recommended by the workspace file. Install them.
+
+> [!NOTE]
+> The *Python Environment Manager* extension is deprecated. I'm not sure yet if it can be replaced by the extension proposed by Microsoft.
 
 Build the sample application, for instance with **Terminal > Run Task...**, then selecting **West Build**.
 
