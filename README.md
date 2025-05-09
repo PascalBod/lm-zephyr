@@ -143,3 +143,5 @@ Build the sample application, for instance with **Terminal > Run Task...**, then
 Ensure the board is connected to a PC's USB port, and attached to the VM. Flash the board, for instance with **Terminal > Run Task...**, then selecting **West Flash**.
 
 To run the sample application in debug mode, select **Run > Start Debugging**.
+
+The VS Code workspace file modified according to the above instructions is part of this repository.
