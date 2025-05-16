@@ -20,15 +20,20 @@ Software versions will be:
   * Basic knowledge of Linux (knowing the most common commands...) - [An Introduction to Linux Basics](https://www.digitalocean.com/community/tutorials/an-introduction-to-linux-basics), from DigitalOcean
   * Basic knowledge of VirtualBox (knowing how to create a virtual machine...) - [VirtualBox end-user documentation](https://www.virtualbox.org/wiki/End-user_documentation)
 
-# References
+# Reference documents
 
 * [Zephyr's Getting Started Guide](https://docs.zephyrproject.org/latest/develop/getting_started/index.html)
 * Zephyr - Supported boards - [EFR32xG24 Dev Kit (xG24-DK2601B)](https://docs.zephyrproject.org/latest/boards/silabs/dev_kits/xg24_dk2601b/doc/index.html)
+* [Zephyr Workbench](https://zephyr-workbench.com/)
 * [How to Configure VS Code for Zephyr Development](https://blog.golioth.io/how-to-configure-vs-code-for-zephyr-development/) - Jonathan Beri
 
 # VM configuration
 
 Once the Linux Mint Cinnamon 22.1 VM is ready, configure it according to the instructions below.
+
+## Projects directory
+
+Create the `~/Dev` directory, where we'll store development projects.
 
 ## Zephyr development environment
 
@@ -103,17 +108,88 @@ LED state: ON
 >
 > To exit from Miniterm, use the following key combination: CTRL + ] (CTRL + ALT-GR + ) on an AZERTY keyboard).
 
-## Integrated Development Environment (IDE)
+## Visual Studio Code configuration
+
+We will use [Visual Studio Code](https://code.visualstudio.com) (VS Code) as the Integrated Development Environment (IDE). Configuring VS Code is quite tricky. We'll rely on [*Ac6 Zephyr Workbench* extension](https://github.com/Ac6Embedded/vscode-zephyr-workbench) to do it. But for those who would prefer to know how to directly configure VS Code, we provide an updated version of Jonathan Beri's method.
 
 ### VS Code installation
 
-The IDE we will use is [Visual Studio Code](https://code.visualstudio.com/) (VS Code), from Microsoft.
-
 Download the [Ubuntu package](https://code.visualstudio.com/Download) and install it.
 
-### VS Code configuration
+### J-Link installation
 
-We will use the configuration produced by Jonathan Beri, and made available in [this GitHub repository](https://github.com/beriberikix/zephyr-vscode-example). The configuration will be done for the *thread* sample project.
+Install [J-Link Software and Documentation pack](https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack), using the 64-bit DEB Installer (version 8.30 at the time of writing).
+
+> [!NOTE]
+> Installing J-Link allows west to flash the EFR32xG24 Dev Kit. Another board could require another software.
+
+> [!NOTE]
+> It could be that the EFR32xG24 Dev Kit does not contain the latest version of J-Link firmware. This could prevent a successful flashing operation. In this case, the firmware should be updated using Simplicity Studio. This [repository](https://github.com/PascalBod/lm-efr32-simplicityStudio) explains how to install Simplicity Studio.
+
+J-Link installation must be done for the two VS Code configuration methods (Zephyr Workbench method and Jonathan's method).
+
+### Zephyr Workbench method
+
+#### Installation
+
+> [!NOTE]
+> There are slight differences between the instructions provided by the README file of the Zephyr Workbench repository and the UI provided by the latest version of the extension. That's the reason for providing the instructions below.
+
+Start VS Code. Add the *Zephyr Workbench* extension from Ac6. At the time of writing, version is 1.3.20. Accept applying CMake settings to prevent popup conflicts.
+
+Click the Zephyr Workbench icon, in VS Code activity bar.
+
+Click on **Install Host Tools**.
+
+An error message is displayed:
+
+```
+Error executing installer: Command failed: cd "/home/developer"; "/usr/bin/pkexec" --disable-internal-agent /bin/bash -c "echo SUDOPROMPT; bash /home/developer/.vscode/extensions/ac6.zephyr-workbench-1.3.20/scripts/hosttools/install.sh --only-root"
+```
+
+But a few moments later, a notification says:
+
+```
+Setup Zephyr environment successful
+```
+
+Click on **Initialize workspace**. Select **Local folder** and set **Location** to `/home/developer/zephyrproject`. Click the **Import** button.
+
+Click on **Import Toolchain**. Select **Local** for **Source**, and set **Location** to `/home/developer/zephyr-sdk-0.17.0`. Click the **Import** button.
+
+#### New application creation
+
+Click on **Create New Application**. Select the **zephyrproject** workspace. Select the **zephyr-sdk-0.17.0** SDK. Select the **xG24 Dev Kit** board. Select the **threads** sample project. Keep the proposed project name. For the location, we'll use `/home/developer/Dev`. Keep the default pristine build option, **auto**. Click the **Create** button.
+
+> [!NOTE]
+> Once the application was created, some header files were marked as not found. I had to 
+> wait for the workspace to be parsed (Intellisense and parsing states are provided by clicking the C extension,
+> in the Status Bar), and to build the application (see below).
+
+#### Building the application
+
+Click the Explorer view icon in the Activity Bar. Open a source code file of the project. Then click the Build icon in the Status Bar.
+
+#### Configuring flash and debug
+
+Install *libffi7*:
+
+```
+$ wget http://archive.ubuntu.com/ubuntu/pool/main/libf/libffi/libffi7_3.3-4_amd64.deb
+$ sudo dpkg -i libffi7_3.3-4_amd64.deb
+```
+
+Ensure the board is connected to a PC's USB port, and attached to the VM.
+
+Click the Zephyr Workbench icon in the Activity Bar.
+
+Click on **Debug Manager**.
+
+Select the application, `threads`. Keep the proposed default values for some other fields. Select **J-Link (compatible)** for the Debug Server runner.
+
+### Jonathan's method
+
+We will use the configuration proposed by Jonathan Beri, and made available in [this GitHub repository](https://github.com/beriberikix/zephyr-vscode-example). The configuration will be done for the *thread* sample project.
 
 Clone the repository. Then, adhere to the following steps (slightly different from the ones presented by the repository):
 
