@@ -66,7 +66,7 @@ Connect the EFR32xG24 Dev Kit. Check that the virtual machine can see it, with *
 
 You can assign the board to the virtual machine on a permanent basis with **Devices > USB > USB Settings...**
 
-Install [J-Link Software and Documentation pack](https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack), using the 64-bit DEB Installer (version 8.28 at the time of writing).
+Install [J-Link Software and Documentation pack](https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack), using the 64-bit DEB Installer (version 8.34 at the time of writing).
 
 > [!NOTE]
 > The above step (installing J-Link) allows west to flash the EFR32xG24 Dev Kit. Another board could require another software.
